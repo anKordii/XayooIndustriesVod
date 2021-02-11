@@ -1,0 +1,75 @@
+{
+  "name": "xayoo-vods",
+  "productName": "XayooIndustriesVod",
+  "version": "1.0.0",
+  "description": "Pobieraj dostepne zapisy VOD z XayooIndustries.us",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\"",
+    "build-installer": "electron-builder"
+  },
+  "build": {
+    "appId": "xayoo-vods",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "src/assets/img/ico.ico"
+    },
+    "nsis": {
+      "installerIcon": "src/assets/img/ico.ico",
+      "uninstallerIcon": "src/assets/img/ico.ico",
+      "uninstallDisplayName": "XayooIndustriesVod",
+      "license": "src/assets/license.txt",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "keywords": [],
+  "author": "3xanax",
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "xayoo_vods"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "discord-rich-presence": "0.0.8",
+    "electron-squirrel-startup": "^1.0.0",
+    "fluent-ffmpeg": "^2.1.2"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.54",
+    "@electron-forge/maker-deb": "^6.0.0-beta.54",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "electron": "11.2.0"
+  }
+}
