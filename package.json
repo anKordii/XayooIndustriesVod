@@ -1,7 +1,7 @@
 {
-  "name": "xayoo-vods",
+  "name": "cyou.4uss.app",
   "productName": "XayooIndustriesVod",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pobieraj dostepne zapisy VOD z XayooIndustries.us",
   "main": "src/index.js",
   "scripts": {
@@ -13,13 +13,18 @@
     "build-installer": "electron-builder"
   },
   "build": {
-    "appId": "xayoo-vods",
+    "appId": "cyou.4uss.app",
     "win": {
       "target": [
         "nsis"
       ],
       "icon": "src/assets/img/ico.ico"
     },
+    "asarUnpack": [
+      "node_modules/@ffmpeg-installer/win32-x64/ffmpeg.exe",
+      "node_modules/@ffmpeg-installer/ffmpeg/*",
+      "node_modules/@ffmpeg-installer/ffmpeg/lib/*"
+    ],
     "nsis": {
       "installerIcon": "src/assets/img/ico.ico",
       "uninstallerIcon": "src/assets/img/ico.ico",
@@ -32,6 +37,10 @@
   "keywords": [],
   "author": "3xanax",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anKordii/XayooIndustriesVod/issues"
+  },
+  "homepage": "https://github.com/anKordii/XayooIndustriesVod#readme",
   "config": {
     "forge": {
       "packagerConfig": {},
@@ -39,7 +48,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "xayoo_vods"
+            "name": "cyou.4uss.app"
           }
         },
         {
@@ -60,6 +69,7 @@
     }
   },
   "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.0.20",
     "discord-rich-presence": "0.0.8",
     "electron-squirrel-startup": "^1.0.0",
     "fluent-ffmpeg": "^2.1.2"

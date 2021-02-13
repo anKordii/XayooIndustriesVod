@@ -1,6 +1,11 @@
 const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 const path = require('path');
+const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path.replace(
+  'app.asar',
+  'app.asar.unpacked'
+);
 const ffmpeg = require("fluent-ffmpeg");
+ffmpeg.setFfmpegPath(ffmpegPath);
 const discord = require('discord-rich-presence')('778898616597086210');
 
 const data = Date.now();
@@ -42,8 +47,8 @@ const createWindow = () => {
 
       ffmpeg(arg)
           .on('progress', function (progress) {
-            var statusD = progress.percent;
-            statuslog(`Pobrano: ${statusD.toFixed(2)}% \n${progress.frames} Klatek`);
+            //var statusD = progress.percent;
+            statuslog(`<strong class="dl-time">Długość: </strong>${progress.timemark} <strong class="dl-kb">Szybkość Pobierania: </strong>${formatSizeUnits(progress.currentKbps*1024)} <strong class="dl-size">Rozmiar: </strong>${formatSizeUnits(progress.targetSize*1000)} <strong class="dl-klatki">Klatek: </strong>${progress.frames} `)
           })
           .outputOptions("-bsf:a aac_adtstoasc")
           .outputOptions("-vcodec copy")
@@ -92,7 +97,15 @@ app.on('activate', () => {
     createWindow();
   }
 });
-
+function formatSizeUnits(bytes){
+  if      (bytes>=1073741824) {bytes=(bytes/1073741824).toFixed(2)+' GB';}
+  else if (bytes>=1048576)    {bytes=(bytes/1048576).toFixed(2)+' MB';}
+  else if (bytes>=1024)       {bytes=(bytes/1024).toFixed(2)+' KB';}
+  else if (bytes>1)           {bytes=bytes+' bytes';}
+  else if (bytes==1)          {bytes=bytes+' byte';}
+  else                        {bytes='0 byte';}
+  return bytes;
+}
 discord.updatePresence({
   state: 'Pobieranie zapisu stream',
   details: 'Główne menu',
