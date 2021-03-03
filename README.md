@@ -4,6 +4,8 @@ Program do pobierania zapisów VOD ze strony xayooindustries.us w formacie m3u8 
 ![XayooIndustries](https://img.shields.io/badge/%F0%9F%98%8E-XayooIndustries-yellow)
 ![Electron](https://img.shields.io/badge/%F0%9F%98%8E-Electron-lightblue)
 
+<a href="https://www.buymeacoffee.com/3xanax" target="_blank"><img src="https://i.imgur.com/D4cMvm7.png" alt="Buy Me A Coffee"></a>
+
 ![preview](https://i.imgur.com/ZVC8sDp.png)
 
 # 🧐 Opis
